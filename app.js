@@ -40,10 +40,17 @@ app.get("/articles/:articleName", (req, res) => {
 // <----------------Article Post--------------------------->
 
 app.post("/articles", (req, res) => {
-  const name = req.body.title;
-  const content = req.body.content;
-  console.log(name);
-  console.log(content);
+  const newArticle = new article({
+    name: req.body.title,
+    content: req.body.content,
+  });
+  newArticle.save((err) => {
+    if (!err) {
+      res.send("Successfully added new document!");
+    } else {
+      res.send(err);
+    }
+  });
 });
 
 // <-------------------server listen------------------------>
