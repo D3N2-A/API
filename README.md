@@ -1,5 +1,5 @@
 # API
-Learning to make a RESTfull API from scratch.
+Learning to make a RESTful API from scratch.
 
 
 ## API Reference
