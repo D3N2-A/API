@@ -84,3 +84,8 @@ Only updates the specified key.
   | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `articleName`      | `string` | **Required**. Title of article to fetch |
+
+
+## Author
+
+- [@Anmol Sharma](https://www.github.com/D3N2-A)
