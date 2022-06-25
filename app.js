@@ -75,6 +75,36 @@ app.delete("/articles/:articleName", (req, res) => {
     }
   });
 });
+// <----------------Article update--------------------------->
+
+app.put("/articles/:articleName", (req, res) => {
+  article.updateOne(
+    { name: req.params.articleName },
+    { name: req.body.title, content: req.body.content },
+    { overwrite: true },
+    (err) => {
+      if (!err) {
+        res.send("Successfully updated article " + req.params.articleName);
+      } else {
+        res.send(err);
+      }
+    }
+  );
+});
+
+app.patch("articles/:articleName", (req, res) => {
+  article.updateOne(
+    { name: req.params.articleName },
+    { $set: req.body },
+    (err) => {
+      if (!err) {
+        res.send("Successfully patched " + req.params.articleName);
+      } else {
+        res.send(err);
+      }
+    }
+  );
+});
 
 // <-------------------server listen------------------------>
 
