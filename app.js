@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-
+const _ = require("lodash");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,6 +47,29 @@ app.post("/articles", (req, res) => {
   newArticle.save((err) => {
     if (!err) {
       res.send("Successfully added new document!");
+    } else {
+      res.send(err);
+    }
+  });
+});
+// <----------------Article delete--------------------------->
+
+app.delete("/articles", (req, res) => {
+  article.deleteMany({}, (err) => {
+    if (!err) {
+      res.send("Successfully deleted all the documents!");
+    } else {
+      res.send(err);
+    }
+  });
+});
+
+app.delete("/articles/:articleName", (req, res) => {
+  article.findOneAndDelete({ name: req.params.articleName }, (err) => {
+    if (!err) {
+      res.send(
+        "Successfully deleted article with the name " + req.params.articleName
+      );
     } else {
       res.send(err);
     }
